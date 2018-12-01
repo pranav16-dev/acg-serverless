@@ -7,3 +7,7 @@ github
 ssh
 brew
 vscode
+html
+css
+font awesome
+google fonts
