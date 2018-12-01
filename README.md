@@ -5,3 +5,5 @@ Updating Technologies
 git
 github
 ssh
+brew
+vscode
