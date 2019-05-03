@@ -22,7 +22,7 @@ def lambda_handler(event, context):
                 if artifact["name"] == "MyAppBuild":
                     location = artifact["location"]["s3Location"]
                         
-        print("Building PortFolio from")
+        print("Building PortFolio from") + str(location)
         s3 = boto3.resource('s3')
         portfolio_bkt = s3.Bucket('portfolio.patelsalescorp.com')
         
