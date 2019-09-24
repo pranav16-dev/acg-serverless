@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> React Demo </title>
+
+        <style media="screen">
+            .messageBox {
+                border: 1px solid;
+                margin: 1em;
+                padding: 2em;
+            }
+
+            .errorBox {
+                border-color: red;
+                background-color: #eebbbb;
+            }
+
+            .successBox {
+                border-color: blue;
+                background-color: #bbbeeb;
+            }            
+
+            .hidden {
+                display: none;
+            }
+        </style>
+    </head>
+        <body>
+            <main id="content">
+                
+                <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+                <script type="text/javascript" src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+                <script type="text/javascript" src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+                
+
+
+                <script type="text/babel" data-presets="react">
+                
+                
+                    class NameInput extends React.Component{
+                        render(){
+                            return (
+                                <div>Hello World again!!
+                                <label> Name: <input type="text"/> </label>
+                                <button> ClickMe </button>
+
+                                <MessageBox />
+                                </div>
+                            )
+                        }
+                    }
+
+                    class MessageBox extends React.Component{
+                        render(){
+                            return (
+                                <div className="messageBox error">
+                                 This is message box
+                                </div>
+                            )
+                        }
+                    }
+                    ReactDOM.render(<NameInput/>,document.getElementById("content"));
+                
+                
+                </script>
+            
+            </main>
+        
+        
+        
+        
+        </body>
+
+
+
+
+</html>
+
