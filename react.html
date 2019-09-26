@@ -5,18 +5,18 @@
         <title> React Demo </title>
 
         <style media="screen">
-            .messageBox {
+            .message {
                 border: 1px solid;
                 margin: 1em;
                 padding: 2em;
             }
 
-            .errorBox {
+            .error {
                 border-color: red;
                 background-color: #eebbbb;
             }
 
-            .successBox {
+            .success {
                 border-color: blue;
                 background-color: #bbbeeb;
             }            
@@ -39,13 +39,36 @@
                 
                 
                     class NameInput extends React.Component{
+                        constructor(props){
+                            super(props);
+
+                            this.state = {
+                                message: {
+                                    type: undefined,
+                                    body: undefined
+                                }
+                            }
+
+                            this.buttonClicked = this.buttonClicked.bind(this);
+                        }
+
+                        buttonClicked(evt){
+                            let name = this.refs.nameInput.value
+                            this.setState( {
+                                message: {
+                                    type: name ? "success" : "error",
+                                    body: name ? "Welcome to React": "You must enter the name"
+                                }
+                            });
+                        }
                         render(){
+                            let msg = this.state.message;
                             return (
                                 <div>Hello World again!!
-                                <label> Name: <input type="text"/> </label>
-                                <button> ClickMe </button>
+                                <label> Name: <input ref="nameInput" type="text"/> </label>
+                                <button onClick={this.buttonClicked}> ClickMe </button>
 
-                                <MessageBox />
+                                <MessageBox type={msg.type} message={msg.body}/>
                                 </div>
                             )
                         }
@@ -54,8 +77,8 @@
                     class MessageBox extends React.Component{
                         render(){
                             return (
-                                <div className="messageBox error">
-                                 This is message box
+                                <div className={"messageBox " + (this.props.type || "hidden")}>
+                                 {this.props.message} 
                                 </div>
                             )
                         }
