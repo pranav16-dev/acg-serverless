@@ -8,10 +8,10 @@ def lambda_handler(event, context):
 
 
     sns = boto3.resource('sns')
-    topic  = sns.Topic('arn:aws:sns:us-west-2:182934946837:deployPortfolioTopic')
+    topic  = sns.Topic('arn:aws:sns:us-east-1:182934946837:deployPortfolioTopic')
     
     location = {
-        "bucketName": 'portfoliobuildwest.patelsalescorp.com',
+        "bucketName": 'portfoliobuild.patelsalescorp.com',
         "objectKey": 'portfoliobuild.zip'
     }
     try:
@@ -21,7 +21,9 @@ def lambda_handler(event, context):
             for artifact in job["data"]["inputArtifacts"]:
                 if artifact["name"] == "MyAppBuild":
                     location = artifact["location"]["s3Location"]
-                        
+                else:
+                    message = str(location)
+        
         print("Building PortFolio from") + str(location)
         s3 = boto3.resource('s3')
         portfolio_bkt = s3.Bucket('portfolio.patelsalescorp.com')
@@ -37,13 +39,13 @@ def lambda_handler(event, context):
                 portfolio_bkt.upload_fileobj(obj,nm,ExtraArgs={'ContentType': mimetypes.guess_type(nm)[0]})
                 portfolio_bkt.Object(nm).Acl().put(ACL='public-read')
        
-        topic.publish(Subject='Portfolio for Patel Sales Corporation uploaded', Message='Please check your PortFolio Deployed Successfully')
+        topic.publish(Subject='Portfolio for Patel Sales Corporation uploaded', Message=message)
         
         if job:
-            codepipeline = boto3.client('codepipeline')
-            codepipeline.put_job_success_result(jobId=job["id"])
+             codepipeline = boto3.client('codepipeline')
+             codepipeline.put_job_success_result(jobId=job["id"])
     except:
-        topic.publish(Subject='Failed to upload portfolio for Patel Sales Corporation', Message='Please check your PortFolio Deployed Successfully')
+        topic.publish(Subject='Failed to upload portfolio for Patel Sales Corporation', Message='Failed to upload portfolio for Patel Sales Corporation')
     return {
         'statusCode': 200,
         'body': json.dumps('Hello from Lambda!')
