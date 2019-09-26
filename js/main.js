@@ -1,5 +1,36 @@
-import 'react-dom'
+import React from 'react'
+import ReactDom from 'react-dom'
+import ExampleWork from './example-work'
 
-console.log("loaded react dom");
 
-console.log("webpacks working now");
+const  myWork = [
+    {
+        'title': "Work Example",
+        'image': {
+            'desc': "example screenshot of a project involving code",
+            'src': "images/example1.png",
+            'comment': ""
+        }
+        
+    },  
+    {
+        'title': "Portfolio Boilerplate",
+        'image': {
+            'desc': "example screenshot of a project involving code2",
+            'src': "images/example2.png",
+            'comment': ""
+        }
+        
+    },  
+    {
+        'title': "Blahhhhh",
+        'image': {
+            'desc': "example screenshot of a project involving code3",
+            'src': "images/example3.png",
+            'comment': ` {/*-- “Chemistry” by Surian Soosay is licensed under CC BY 2.0
+            https://www.flickr.com/photos/ssoosay/4097410999 -->*/}`
+        }
+        
+    }
+]
+ReactDom.render(<ExampleWork  work={myWork}/>, document.getElementById('example-work'))
