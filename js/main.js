@@ -6,6 +6,8 @@ import ExampleWork from './example-work'
 const  myWork = [
     {
         'title': "Work Example",
+        'href': "www.google.com",
+        'desc': "lorem imsum blah blah blah",
         'image': {
             'desc': "example screenshot of a project involving code",
             'src': "images/example1.png",
@@ -15,6 +17,8 @@ const  myWork = [
     },  
     {
         'title': "Portfolio Boilerplate",
+        'href': "www.google.com",
+        'desc': "lorem imsum blah blah blah",
         'image': {
             'desc': "example screenshot of a project involving code2",
             'src': "images/example2.png",
@@ -24,6 +28,8 @@ const  myWork = [
     },  
     {
         'title': "Blahhhhh",
+        'href': "www.google.com",
+        'desc': "lorem imsum blah blah blah",
         'image': {
             'desc': "example screenshot of a project involving code3",
             'src': "images/example3.png",
